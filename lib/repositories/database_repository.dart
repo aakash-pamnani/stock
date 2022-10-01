@@ -151,9 +151,8 @@ class DatabaseRepository {
 
     oldData?["name"] = newName;
 
-    await _database.collection(_categoryRef).doc(newName).set(oldData ?? {});
-
     await _database.collection(_categoryRef).doc(oldName).delete();
+    await _database.collection(_categoryRef).doc(newName).set(oldData ?? {});
   }
 
   Future<List<StockModel>> getStockFromCategory(String category) async {
